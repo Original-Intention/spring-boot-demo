@@ -31,15 +31,14 @@ public class _6_Solution {
         for(int i=0;i<Math.min(numRows,s.length());i++){
             list.add(new StringBuffer());
         }
-        int curRow = 0;
-        boolean goingDown = false;
+        int curRow = 0,flag=-1;
         //遍历字符串，并走倒N字形，从上到下
         for(char c : s.toCharArray()){
             list.get(curRow).append(c);
             if(curRow==0||curRow==numRows-1){
-                goingDown =!goingDown;
+                flag = -flag;
             }
-            curRow+=goingDown?1:-1;
+            curRow+=flag;
         }
         //最后拼接字符
         for(StringBuffer str : list){
