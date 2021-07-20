@@ -17,14 +17,16 @@ public class _11_Solution {
 
     //使用双指针，当左边数<右边数是，则向右移动左指针，反之则向左移动又指针
     public static int maxArea(int[] height) {
+        //当数组长度为0或1，面积均为0
         if (height.length<=1) return 0;
-        int s=0,e=height.length-1,sum = 0;
-        while(s<e){
-            sum = Math.max(sum,Math.min(height[s],height[e])*(e-s));
-            if(height[s]>height[e]){
-                e--;
+        int left=0,right=height.length-1,sum = 0;
+        while(left < right){
+            int mid = Math.min(height[left],height[right])*(right-left);
+            sum = Math.max(sum,mid);
+            if(height[left]>height[right]){
+                right--;
             }else{
-                s++;
+                left++;
             }
         }
         return sum;
